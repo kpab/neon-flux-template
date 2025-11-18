@@ -14,7 +14,7 @@ export function useAudioReactive(enabled: boolean = false) {
   });
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const dataArrayRef = useRef<Uint8Array | null>(null);
+  const dataArrayRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
 
   useEffect(() => {
     if (!enabled || typeof window === 'undefined') return;

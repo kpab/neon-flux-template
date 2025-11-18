@@ -1,3 +1,5 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import Hero from '@/components/animations/Hero';
 import CyberNav from '@/components/ui/CyberNav';
