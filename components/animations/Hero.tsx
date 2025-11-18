@@ -54,9 +54,9 @@ export default function Hero() {
             </NeonButton>
             <NeonButton
               variant="secondary"
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('blog')}
             >
-              Get In Touch
+              Read Blog
             </NeonButton>
           </div>
 

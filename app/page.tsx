@@ -7,7 +7,6 @@ import ScanLines from '@/components/effects/ScanLines';
 import CyberGrid from '@/components/animations/CyberGrid';
 import HologramCard from '@/components/ui/HologramCard';
 import Terminal from '@/components/ui/Terminal';
-import ContactForm from '@/components/ui/ContactForm';
 
 // Dynamic imports for 3D components (client-side only)
 const CyberCity = dynamic(() => import('@/components/3d/CyberCity'), {
@@ -230,58 +229,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="relative z-10 py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-6xl font-orbitron text-center neon-text-purple mb-4">
-            Get In Touch
-          </h2>
-          <p className="text-center text-neon-cyan/70 mb-12 max-w-2xl mx-auto">
-            Have a project in mind? Let&apos;s build something amazing together.
-          </p>
-
-          <div className="max-w-2xl mx-auto">
-            <ContactForm />
-          </div>
-
-          {/* Social Links */}
-          <div className="flex justify-center gap-6 mt-12">
-            {[
-              { name: 'GitHub', icon: '⚡', link: '#' },
-              { name: 'Twitter', icon: '🐦', link: '#' },
-              { name: 'LinkedIn', icon: '💼', link: '#' },
-              { name: 'Discord', icon: '💬', link: '#' },
-            ].map((social, index) => (
-              <a
-                key={index}
-                href={social.link}
-                className="w-14 h-14 flex items-center justify-center text-2xl glass rounded-full hover:scale-110 hover:shadow-neon-cyan transition-all duration-300"
-                title={social.name}
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="relative z-10 py-8 border-t border-neon-cyan/20">
+      <footer className="relative z-10 py-12 border-t border-neon-cyan/20">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-neon-cyan font-space-mono text-sm">
-              &copy; {new Date().getFullYear()} Neon Flux Template. Built with Next.js 15
-            </p>
-            <div className="flex gap-6 text-sm text-neon-cyan/60">
-              <a href="#" className="hover:text-neon-pink transition-colors">
-                Privacy
-              </a>
-              <a href="#" className="hover:text-neon-pink transition-colors">
-                Terms
-              </a>
-              <a href="#" className="hover:text-neon-pink transition-colors">
-                Credits
-              </a>
+          <div className="max-w-4xl mx-auto">
+            {/* Social Links */}
+            <div className="flex justify-center gap-6 mb-8">
+              {[
+                { name: 'GitHub', icon: '⚡', link: 'https://github.com' },
+                { name: 'Twitter', icon: '🐦', link: 'https://twitter.com' },
+                { name: 'LinkedIn', icon: '💼', link: 'https://linkedin.com' },
+                { name: 'Email', icon: '✉️', link: 'mailto:hello@example.com' },
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 flex items-center justify-center text-xl glass rounded-full hover:scale-110 hover:shadow-neon-cyan transition-all duration-300"
+                  title={social.name}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+
+            {/* Footer Info */}
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-neon-cyan font-space-mono text-sm">
+                &copy; {new Date().getFullYear()} Neon Flux Template. Built with Next.js 15
+              </p>
+              <div className="flex gap-6 text-sm text-neon-cyan/60">
+                <a href="#" className="hover:text-neon-pink transition-colors">
+                  Privacy
+                </a>
+                <a href="#" className="hover:text-neon-pink transition-colors">
+                  Terms
+                </a>
+                <a
+                  href="https://github.com/yourusername/neon-flux-template"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-neon-pink transition-colors"
+                >
+                  Source Code
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -21,7 +21,6 @@ export default function CyberNav() {
     { name: 'Skills', href: '#skills' },
     { name: 'Blog', href: '#blog' },
     { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
   ];
 
   const scrollToSection = (id: string) => {
@@ -72,9 +71,9 @@ export default function CyberNav() {
           {/* CTA Button */}
           <button
             className="hidden md:block neon-button text-sm"
-            onClick={() => scrollToSection('contact')}
+            onClick={() => scrollToSection('portfolio')}
           >
-            Get In Touch
+            View Portfolio
           </button>
 
           {/* Mobile Menu Button */}
@@ -121,14 +120,6 @@ export default function CyberNav() {
                   </a>
                 </li>
               ))}
-              <li>
-                <button
-                  className="neon-button text-sm w-full"
-                  onClick={() => scrollToSection('contact')}
-                >
-                  Get In Touch
-                </button>
-              </li>
             </ul>
           </div>
         )}
