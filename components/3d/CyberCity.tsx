@@ -1,134 +1,211 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Stars } from '@react-three/drei';
-import * as THREE from 'three';
+import { useEffect, useRef } from 'react';
 
-// Animated building component
-function Building({ position, height, color }: { position: [number, number, number]; height: number; color: string }) {
-  const meshRef = useRef<THREE.Mesh>(null);
+export default function CyberCity() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.01;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas size
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+
+    // Building data
+    interface Building {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      color: string;
+      windows: Array<{ x: number; y: number; lit: boolean }>;
     }
-  });
 
-  return (
-    <mesh ref={meshRef} position={position}>
-      <boxGeometry args={[1, height, 1]} />
-      <meshStandardMaterial
-        color={color}
-        emissive={color}
-        emissiveIntensity={0.5}
-        transparent
-        opacity={0.8}
-      />
-    </mesh>
-  );
-}
-
-// City grid component
-function CityGrid() {
-  const buildings = useMemo(() => {
-    const temp = [];
+    const buildings: Building[] = [];
     const colors = ['#FF10F0', '#00FFF0', '#B026FF', '#00D4FF'];
+    const buildingCount = 30;
 
-    for (let i = 0; i < 20; i++) {
-      for (let j = 0; j < 20; j++) {
-        if (Math.random() > 0.3) {
-          const x = (i - 10) * 3;
-          const z = (j - 10) * 3;
-          const height = Math.random() * 5 + 1;
-          const color = colors[Math.floor(Math.random() * colors.length)];
+    // Generate buildings
+    for (let i = 0; i < buildingCount; i++) {
+      const width = 40 + Math.random() * 60;
+      const height = 100 + Math.random() * 300;
+      const x = (canvas.width / buildingCount) * i;
+      const y = canvas.height - height;
+      const color = colors[Math.floor(Math.random() * colors.length)];
 
-          temp.push({
-            position: [x, height / 2, z] as [number, number, number],
-            height,
-            color,
-            key: `${i}-${j}`,
+      // Generate windows
+      const windows = [];
+      const windowRows = Math.floor(height / 20);
+      const windowCols = Math.floor(width / 15);
+
+      for (let row = 0; row < windowRows; row++) {
+        for (let col = 0; col < windowCols; col++) {
+          windows.push({
+            x: x + col * 15 + 5,
+            y: y + row * 20 + 5,
+            lit: Math.random() > 0.3,
           });
         }
       }
+
+      buildings.push({ x, y, width, height, color, windows });
     }
 
-    return temp;
+    // Animation variables
+    let animationFrame: number;
+    let time = 0;
+
+    // Stars
+    const stars: Array<{ x: number; y: number; size: number; opacity: number }> = [];
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height * 0.6,
+        size: Math.random() * 2,
+        opacity: Math.random(),
+      });
+    }
+
+    // Grid
+    const gridSpacing = 50;
+
+    // Animation loop
+    const animate = () => {
+      time += 0.01;
+
+      // Clear with dark background
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, '#0D0221');
+      gradient.addColorStop(1, '#0A0A0A');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw stars
+      stars.forEach((star) => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${0.5 + Math.sin(time * 2 + star.x) * 0.5})`;
+        ctx.fill();
+      });
+
+      // Draw perspective grid
+      ctx.strokeStyle = 'rgba(0, 255, 240, 0.1)';
+      ctx.lineWidth = 1;
+
+      // Horizontal lines (perspective)
+      const horizon = canvas.height * 0.6;
+      for (let i = 0; i < 10; i++) {
+        const y = horizon + i * 30;
+        const perspective = (y - horizon) / (canvas.height - horizon);
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.strokeStyle = `rgba(0, 255, 240, ${0.05 + perspective * 0.1})`;
+        ctx.stroke();
+      }
+
+      // Vertical lines (converging to center)
+      const vanishingPointX = canvas.width / 2;
+      for (let i = -10; i <= 10; i++) {
+        const x = canvas.width / 2 + i * gridSpacing;
+        ctx.beginPath();
+        ctx.moveTo(x, canvas.height);
+        ctx.lineTo(vanishingPointX + (x - vanishingPointX) * 0.3, horizon);
+        ctx.strokeStyle = 'rgba(0, 255, 240, 0.05)';
+        ctx.stroke();
+      }
+
+      // Draw buildings
+      buildings.forEach((building) => {
+        // Building outline
+        ctx.fillStyle = 'rgba(10, 10, 10, 0.8)';
+        ctx.fillRect(building.x, building.y, building.width, building.height);
+
+        // Neon border with glow
+        ctx.strokeStyle = building.color;
+        ctx.lineWidth = 2;
+        ctx.shadowColor = building.color;
+        ctx.shadowBlur = 10;
+        ctx.strokeRect(building.x, building.y, building.width, building.height);
+        ctx.shadowBlur = 0;
+
+        // Windows
+        building.windows.forEach((window) => {
+          if (window.lit) {
+            const flicker = Math.random() > 0.95 ? 0.5 : 1;
+            ctx.fillStyle = `rgba(0, 255, 240, ${0.6 * flicker})`;
+            ctx.fillRect(window.x, window.y, 8, 8);
+
+            // Window glow
+            ctx.shadowColor = '#00FFF0';
+            ctx.shadowBlur = 5;
+            ctx.fillRect(window.x, window.y, 8, 8);
+            ctx.shadowBlur = 0;
+          }
+        });
+
+        // Occasional antenna on top
+        if (Math.random() > 0.7) {
+          const antennaX = building.x + building.width / 2;
+          const antennaHeight = 20;
+
+          ctx.strokeStyle = building.color;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(antennaX, building.y);
+          ctx.lineTo(antennaX, building.y - antennaHeight);
+          ctx.stroke();
+
+          // Blinking light
+          if (Math.sin(time * 5) > 0.5) {
+            ctx.fillStyle = '#FF10F0';
+            ctx.shadowColor = '#FF10F0';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(antennaX, building.y - antennaHeight, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        }
+      });
+
+      // Scanline effect
+      ctx.fillStyle = 'rgba(0, 255, 240, 0.02)';
+      const scanlineY = (time * 100) % canvas.height;
+      ctx.fillRect(0, scanlineY, canvas.width, 2);
+
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', setCanvasSize);
+    };
   }, []);
 
   return (
-    <>
-      {buildings.map((building) => (
-        <Building
-          key={building.key}
-          position={building.position}
-          height={building.height}
-          color={building.color}
-        />
-      ))}
-    </>
-  );
-}
-
-// Grid floor component
-function GridFloor() {
-  const gridRef = useRef<THREE.GridHelper>(null);
-
-  useFrame((state) => {
-    if (gridRef.current) {
-      gridRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
-    }
-  });
-
-  return (
-    <gridHelper
-      ref={gridRef}
-      args={[100, 50, '#00FFF0', '#FF10F0']}
-      position={[0, -0.5, 0]}
+    <canvas
+      ref={canvasRef}
+      className="canvas-container"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+      }}
     />
-  );
-}
-
-// Main scene component
-function Scene() {
-  return (
-    <>
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} color="#00FFF0" intensity={1} />
-      <pointLight position={[-10, 10, -10]} color="#FF10F0" intensity={1} />
-      <Stars
-        radius={100}
-        depth={50}
-        count={5000}
-        factor={4}
-        saturation={0}
-        fade
-        speed={1}
-      />
-      <GridFloor />
-      <CityGrid />
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        maxPolarAngle={Math.PI / 2.5}
-        minPolarAngle={Math.PI / 4}
-        autoRotate
-        autoRotateSpeed={0.5}
-      />
-    </>
-  );
-}
-
-// Main component
-export default function CyberCity() {
-  return (
-    <div className="canvas-container">
-      <Canvas
-        camera={{ position: [0, 10, 20], fov: 60 }}
-        gl={{ alpha: true, antialias: true }}
-      >
-        <Scene />
-      </Canvas>
-    </div>
   );
 }
