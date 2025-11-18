@@ -17,9 +17,18 @@ export default function CyberNav() {
 
   const navItems = [
     { name: 'Home', href: '#home' },
-    { name: 'Features', href: '#features' },
+    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Blog', href: '#blog' },
     { name: 'About', href: '#about' },
+    { name: 'Contact', href: '#contact' },
   ];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav
@@ -30,7 +39,14 @@ export default function CyberNav() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="font-orbitron text-2xl font-bold text-neon-cyan">
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('home');
+            }}
+            className="font-orbitron text-2xl font-bold text-neon-cyan cursor-pointer"
+          >
             <span className="neon-text-cyan">NEON</span>
             <span className="neon-text-pink ml-2">FLUX</span>
           </a>
@@ -41,7 +57,11 @@ export default function CyberNav() {
               <li key={index}>
                 <a
                   href={item.href}
-                  className="font-rajdhani text-lg text-neon-cyan hover:text-neon-pink transition-colors duration-300 neon-glow-hover"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.href.substring(1));
+                  }}
+                  className="font-rajdhani text-lg text-neon-cyan hover:text-neon-pink transition-colors duration-300 neon-glow-hover cursor-pointer"
                 >
                   {item.name}
                 </a>
@@ -50,8 +70,11 @@ export default function CyberNav() {
           </ul>
 
           {/* CTA Button */}
-          <button className="hidden md:block neon-button text-sm">
-            Get Started
+          <button
+            className="hidden md:block neon-button text-sm"
+            onClick={() => scrollToSection('contact')}
+          >
+            Get In Touch
           </button>
 
           {/* Mobile Menu Button */}
@@ -88,16 +111,22 @@ export default function CyberNav() {
                 <li key={index}>
                   <a
                     href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block font-rajdhani text-lg text-neon-cyan hover:text-neon-pink transition-colors duration-300"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(item.href.substring(1));
+                    }}
+                    className="block font-rajdhani text-lg text-neon-cyan hover:text-neon-pink transition-colors duration-300 cursor-pointer"
                   >
                     {item.name}
                   </a>
                 </li>
               ))}
               <li>
-                <button className="neon-button text-sm w-full">
-                  Get Started
+                <button
+                  className="neon-button text-sm w-full"
+                  onClick={() => scrollToSection('contact')}
+                >
+                  Get In Touch
                 </button>
               </li>
             </ul>

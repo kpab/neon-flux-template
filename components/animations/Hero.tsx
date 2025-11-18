@@ -12,6 +12,11 @@ export default function Hero() {
     setMounted(true);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section
       id="home"
@@ -30,23 +35,36 @@ export default function Hero() {
 
           {/* Subtitle */}
           <h2 className="text-2xl md:text-4xl font-rajdhani text-neon-cyan text-shadow-neon-cyan">
-            Cyberpunk Next.js Template
+            Cyberpunk Portfolio Template
           </h2>
 
           {/* Description */}
           <p className="text-lg md:text-xl text-neon-cyan/80 max-w-2xl mx-auto font-space-mono">
-            Experience the future of web development with stunning 3D graphics,
-            smooth animations, and cyberpunk aesthetics.
+            Showcase your projects with stunning graphics, smooth animations,
+            and cyberpunk aesthetics. Built with Next.js 15 & TypeScript.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <NeonButton variant="primary">Explore Demo</NeonButton>
-            <NeonButton variant="secondary">View on GitHub</NeonButton>
+            <NeonButton
+              variant="primary"
+              onClick={() => scrollToSection('portfolio')}
+            >
+              View Portfolio
+            </NeonButton>
+            <NeonButton
+              variant="secondary"
+              onClick={() => scrollToSection('contact')}
+            >
+              Get In Touch
+            </NeonButton>
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div
+            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+            onClick={() => scrollToSection('portfolio')}
+          >
             <div className="w-6 h-10 border-2 border-neon-cyan rounded-full flex justify-center">
               <div className="w-1 h-3 bg-neon-cyan rounded-full mt-2 animate-pulse" />
             </div>
