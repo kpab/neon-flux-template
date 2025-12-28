@@ -29,6 +29,7 @@ const config: Config = {
         "space-mono": ["Space Mono", "monospace"],
         rajdhani: ["Rajdhani", "sans-serif"],
         "share-tech": ["Share Tech Mono", "monospace"],
+        "exo-2": ["Exo 2", "sans-serif"],
       },
       boxShadow: {
         "neon-pink": "0 0 20px #FF10F0, 0 0 40px #FF10F0",

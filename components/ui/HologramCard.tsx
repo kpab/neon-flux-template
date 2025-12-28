@@ -28,7 +28,7 @@ export default function HologramCard({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
-      className="group relative glass rounded-lg p-6 hover:scale-105 transition-all duration-300"
+      className="group relative glass rounded-lg p-6 cursor-pointer hover:shadow-neon-cyan hover:border-neon-cyan/50 transition-all duration-300"
     >
       {/* Hologram border effect */}
       <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-neon-pink via-neon-cyan to-neon-yellow opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
@@ -76,7 +76,7 @@ export default function HologramCard({
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-4 text-neon-pink hover:text-neon-yellow transition-colors font-space-mono"
+            className="inline-block mt-4 text-neon-pink hover:text-neon-yellow transition-colors font-space-mono cursor-pointer focus:outline-none focus:ring-2 focus:ring-neon-pink focus:ring-offset-2 focus:ring-offset-cyber-black rounded"
           >
             View Project →
           </a>

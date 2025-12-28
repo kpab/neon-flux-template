@@ -7,6 +7,7 @@ import ScanLines from '@/components/effects/ScanLines';
 import CyberGrid from '@/components/animations/CyberGrid';
 import HologramCard from '@/components/ui/HologramCard';
 import Terminal from '@/components/ui/Terminal';
+import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 
 // Dynamic imports for 3D components (client-side only)
 const CyberCity = dynamic(() => import('@/components/3d/CyberCity'), {
@@ -236,22 +237,26 @@ export default function Home() {
             {/* Social Links */}
             <div className="flex justify-center gap-6 mb-8">
               {[
-                { name: 'GitHub', icon: '⚡', link: 'https://github.com' },
-                { name: 'Twitter', icon: '🐦', link: 'https://twitter.com' },
-                { name: 'LinkedIn', icon: '💼', link: 'https://linkedin.com' },
-                { name: 'Email', icon: '✉️', link: 'mailto:hello@example.com' },
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center text-xl glass rounded-full hover:scale-110 hover:shadow-neon-cyan transition-all duration-300"
-                  title={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
+                { name: 'GitHub', icon: Github, link: 'https://github.com' },
+                { name: 'Twitter', icon: Twitter, link: 'https://twitter.com' },
+                { name: 'LinkedIn', icon: Linkedin, link: 'https://linkedin.com' },
+                { name: 'Email', icon: Mail, link: 'mailto:hello@example.com' },
+              ].map((social, index) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={index}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 flex items-center justify-center glass rounded-full cursor-pointer text-neon-cyan hover:text-neon-pink hover:shadow-neon-pink hover:border-neon-pink/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-cyber-black"
+                    title={social.name}
+                    aria-label={social.name}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                );
+              })}
             </div>
 
             {/* Footer Info */}
@@ -260,17 +265,17 @@ export default function Home() {
                 &copy; {new Date().getFullYear()} Neon Flux Template. Built with Next.js 15
               </p>
               <div className="flex gap-6 text-sm text-neon-cyan/60">
-                <a href="#" className="hover:text-neon-pink transition-colors">
+                <a href="#" className="hover:text-neon-pink transition-colors cursor-pointer focus:outline-none focus:text-neon-pink">
                   Privacy
                 </a>
-                <a href="#" className="hover:text-neon-pink transition-colors">
+                <a href="#" className="hover:text-neon-pink transition-colors cursor-pointer focus:outline-none focus:text-neon-pink">
                   Terms
                 </a>
                 <a
                   href="https://github.com/yourusername/neon-flux-template"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-neon-pink transition-colors"
+                  className="hover:text-neon-pink transition-colors cursor-pointer focus:outline-none focus:text-neon-pink"
                 >
                   Source Code
                 </a>

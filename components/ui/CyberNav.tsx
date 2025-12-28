@@ -31,8 +31,8 @@ export default function CyberNav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass backdrop-blur-md' : 'bg-transparent'
+      className={`fixed top-4 left-4 right-4 z-50 transition-all duration-300 rounded-xl ${
+        isScrolled ? 'glass backdrop-blur-md shadow-lg shadow-neon-cyan/10' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -60,7 +60,7 @@ export default function CyberNav() {
                     e.preventDefault();
                     scrollToSection(item.href.substring(1));
                   }}
-                  className="font-rajdhani text-lg text-neon-cyan hover:text-neon-pink transition-colors duration-300 neon-glow-hover cursor-pointer"
+                  className="font-rajdhani text-lg text-neon-cyan hover:text-neon-pink transition-colors duration-300 neon-glow-hover cursor-pointer focus:outline-none focus:text-neon-pink"
                 >
                   {item.name}
                 </a>
@@ -79,7 +79,7 @@ export default function CyberNav() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-neon-cyan focus:outline-none"
+            className="md:hidden text-neon-cyan cursor-pointer focus:outline-none focus:ring-2 focus:ring-neon-cyan focus:ring-offset-2 focus:ring-offset-cyber-black rounded-md p-1"
             aria-label="Toggle menu"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
@@ -114,7 +114,7 @@ export default function CyberNav() {
                       e.preventDefault();
                       scrollToSection(item.href.substring(1));
                     }}
-                    className="block font-rajdhani text-lg text-neon-cyan hover:text-neon-pink transition-colors duration-300 cursor-pointer"
+                    className="block font-rajdhani text-lg text-neon-cyan hover:text-neon-pink transition-colors duration-300 cursor-pointer focus:outline-none focus:text-neon-pink"
                   >
                     {item.name}
                   </a>
