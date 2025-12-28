@@ -8,10 +8,10 @@
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Three.js](https://img.shields.io/badge/Three.js-0.160-black?style=for-the-badge&logo=three.js)](https://threejs.org/)
+[![GSAP](https://img.shields.io/badge/GSAP-3.12-88CE02?style=for-the-badge&logo=greensock)](https://greensock.com/gsap/)
 [![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
-[Demo](https://neon-flux.vercel.app) • [Documentation](#documentation) • [Features](#features) • [Quick Start](#quick-start)
+[Documentation](#documentation) • [Features](#features) • [Quick Start](#quick-start)
 
 </div>
 
@@ -25,8 +25,8 @@
 - **Glassmorphism** - Modern glass effects with backdrop blur
 - **Typography** - Orbitron, Space Mono, Rajdhani fonts
 
-### 🎭 3D & Animations
-- **Three.js Integration** - Interactive 3D cyberpunk city
+### 🎭 Animations
+- **Canvas 3D Effects** - Custom canvas-based cyberpunk city
 - **GSAP Support** - Advanced scroll-triggered animations
 - **Framer Motion** - Smooth micro-interactions
 - **Particle Effects** - Interactive background particles
@@ -48,7 +48,7 @@
 - **Grid Background** - Animated cyber grid
 
 ### 🎯 Performance
-- **Optimized 3D Rendering** - Efficient Three.js setup
+- **Optimized Rendering** - Efficient canvas-based effects
 - **Code Splitting** - Dynamic imports for better loading
 - **Responsive** - Mobile-first design
 - **Reduced Motion** - Respects user preferences
@@ -84,7 +84,7 @@ npm run dev
 #### Manual Clone
 
 ```bash
-git clone https://github.com/yourusername/neon-flux-template.git
+git clone https://github.com/kpab/neon-flux-template.git
 cd neon-flux-template
 npm install
 npm run dev
@@ -309,7 +309,7 @@ The template includes a comprehensive design system:
 
 ### Vercel (Recommended)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/neon-flux-template)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kpab/neon-flux-template)
 
 ```bash
 npm run build
@@ -404,17 +404,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 📧 Email: support@neonflux.dev
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/neon-flux-template/issues)
-- 💬 Discord: [Join our community](https://discord.gg/neonflux)
-- 📖 Docs: [Full Documentation](https://docs.neonflux.dev)
+- 🐛 Issues: [GitHub Issues](https://github.com/kpab/neon-flux-template/issues)
 
 ---
 
 <div align="center">
 
-**Built with ⚡ by the Neon Flux team**
-
-[Website](https://neonflux.dev) • [Twitter](https://twitter.com/neonflux) • [Discord](https://discord.gg/neonflux)
+**Built with ⚡ Neon Flux Template**
 
 </div>

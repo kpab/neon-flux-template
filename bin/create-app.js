@@ -44,7 +44,7 @@ try {
 
   // Clone the repository
   execSync(
-    `git clone https://github.com/yourusername/neon-flux-template.git ${projectName}`,
+    `git clone https://github.com/kpab/neon-flux-template.git ${projectName}`,
     { stdio: 'inherit' }
   );
 
@@ -81,7 +81,7 @@ try {
 ║  🌐 Open http://localhost:3000                            ║
 ║                                                           ║
 ║  📚 Documentation: README.md                              ║
-║  🐛 Issues: github.com/yourusername/neon-flux-template    ║
+║  🐛 Issues: github.com/kpab/neon-flux-template             ║
 ║                                                           ║
 ╚═══════════════════════════════════════════════════════════╝
 
