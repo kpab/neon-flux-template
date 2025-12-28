@@ -6,11 +6,17 @@ export default function ParticlesBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    let animationFrame: number;
 
     // Set canvas size
     const setCanvasSize = () => {
@@ -20,7 +26,7 @@ export default function ParticlesBackground() {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Particle system
+    // Particle system - reduced count for better performance
     const particles: Array<{
       x: number;
       y: number;
@@ -31,7 +37,7 @@ export default function ParticlesBackground() {
     }> = [];
 
     const colors = ['#FF10F0', '#00FFF0', '#FFFF00'];
-    const particleCount = 80;
+    const particleCount = 50; // Reduced from 80
 
     // Initialize particles
     for (let i = 0; i < particleCount; i++) {
@@ -55,10 +61,23 @@ export default function ParticlesBackground() {
     };
     window.addEventListener('mousemove', handleMouseMove);
 
+    // Spatial grid for O(n) neighbor lookup
+    const CELL_SIZE = 150;
+    const getGridKey = (x: number, y: number) =>
+      `${Math.floor(x / CELL_SIZE)},${Math.floor(y / CELL_SIZE)}`;
+
     // Animation loop
     const animate = () => {
       ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Build spatial grid
+      const grid: Map<string, number[]> = new Map();
+      particles.forEach((particle, i) => {
+        const key = getGridKey(particle.x, particle.y);
+        if (!grid.has(key)) grid.set(key, []);
+        grid.get(key)!.push(i);
+      });
 
       particles.forEach((particle, i) => {
         // Update position
@@ -85,31 +104,44 @@ export default function ParticlesBackground() {
         ctx.fillStyle = particle.color;
         ctx.fill();
 
-        // Draw connections
-        particles.forEach((otherParticle, j) => {
-          if (i === j) return;
+        // Draw connections - only check neighboring cells
+        const cellX = Math.floor(particle.x / CELL_SIZE);
+        const cellY = Math.floor(particle.y / CELL_SIZE);
 
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+        for (let ox = -1; ox <= 1; ox++) {
+          for (let oy = -1; oy <= 1; oy++) {
+            const neighborKey = `${cellX + ox},${cellY + oy}`;
+            const neighbors = grid.get(neighborKey);
+            if (!neighbors) continue;
 
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(0, 255, 240, ${0.3 * (1 - distance / 150)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
+            for (const j of neighbors) {
+              if (i >= j) continue; // Avoid duplicate lines
+
+              const other = particles[j];
+              const dx = particle.x - other.x;
+              const dy = particle.y - other.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+
+              if (dist < 150) {
+                ctx.beginPath();
+                ctx.moveTo(particle.x, particle.y);
+                ctx.lineTo(other.x, other.y);
+                ctx.strokeStyle = `rgba(0, 255, 240, ${0.3 * (1 - dist / 150)})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
           }
-        });
+        }
       });
 
-      requestAnimationFrame(animate);
+      animationFrame = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
+      cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', setCanvasSize);
       window.removeEventListener('mousemove', handleMouseMove);
     };

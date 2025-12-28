@@ -49,6 +49,7 @@ const config: Config = {
         flicker: "flicker 3s linear infinite",
         float: "float 6s ease-in-out infinite",
         "matrix-rain": "matrix-rain 20s linear infinite",
+        shimmer: "shimmer 2s infinite",
       },
       keyframes: {
         "glitch-1": {
@@ -93,6 +94,10 @@ const config: Config = {
         "matrix-rain": {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(100%)" },
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
         },
       },
       backgroundImage: {

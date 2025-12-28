@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
+import Image from 'next/image';
 
 interface HologramCardProps {
   title: string;
@@ -22,6 +23,8 @@ export default function HologramCard({
   children,
   delay = 0,
 }: HologramCardProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -37,9 +40,20 @@ export default function HologramCard({
         {/* Image */}
         {image && (
           <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-cyber-dark">
-            <div
-              className="w-full h-full bg-cover bg-center"
-              style={{ backgroundImage: `url(${image})` }}
+            {/* Skeleton loader */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-cyber-dark animate-pulse">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-cyan/5 to-transparent animate-[shimmer_2s_infinite]" />
+              </div>
+            )}
+            <Image
+              src={image}
+              alt={title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className={`object-cover transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              onLoad={() => setImageLoaded(true)}
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-cyber-black/80 to-transparent" />
           </div>
