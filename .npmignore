@@ -1,0 +1,29 @@
+# Development files
+.claude/
+.git/
+.github/
+.next/
+node_modules/
+
+# Build output
+*.log
+*.tgz
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+coverage/
+__tests__/
+
+# Misc
+CONTRIBUTING.md
+.env
+.env.local
