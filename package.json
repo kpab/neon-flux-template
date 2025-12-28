@@ -18,12 +18,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/neon-flux-template.git"
+    "url": "https://github.com/kpab/neon-flux-template.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/neon-flux-template/issues"
+    "url": "https://github.com/kpab/neon-flux-template/issues"
   },
-  "homepage": "https://github.com/yourusername/neon-flux-template#readme",
+  "homepage": "https://github.com/kpab/neon-flux-template#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
