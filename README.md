@@ -30,7 +30,6 @@
 - **GSAP Support** - Advanced scroll-triggered animations
 - **Framer Motion** - Smooth micro-interactions
 - **Particle Effects** - Interactive background particles
-- **Custom Shaders** - Hologram and glitch effects
 
 ### 🎬 Effects Library
 - **Glitch Text** - Dynamic text distortion effects
@@ -105,7 +104,7 @@ neon-flux-template/
 │
 ├── components/
 │   ├── 3d/
-│   │   └── CyberCity.tsx   # Three.js 3D city scene
+│   │   └── CyberCity.tsx   # Canvas-based 3D city scene
 │   ├── animations/
 │   │   ├── Hero.tsx        # Hero section
 │   │   ├── GlitchText.tsx  # Glitch text effect
@@ -115,7 +114,9 @@ neon-flux-template/
 │   │   └── Particles.tsx   # Particle background
 │   ├── ui/
 │   │   ├── CyberNav.tsx    # Navigation component
-│   │   └── NeonButton.tsx  # Neon-styled button
+│   │   ├── NeonButton.tsx  # Neon-styled button
+│   │   ├── HologramCard.tsx # Holographic card component
+│   │   └── Terminal.tsx    # Terminal simulator
 │   └── hooks/
 │       ├── useGlitch.ts    # Glitch effect hook
 │       ├── useNeonGlow.ts  # Neon glow hook
@@ -126,16 +127,6 @@ neon-flux-template/
 │   ├── neon.css            # Neon effect styles
 │   ├── glitch.css          # Glitch animations
 │   └── animations.css      # Custom animations
-│
-├── lib/
-│   ├── shaders/            # GLSL shaders (future)
-│   ├── animations/         # Animation configs
-│   └── utils/              # Utility functions
-│
-├── public/
-│   ├── models/             # 3D models
-│   ├── textures/           # Texture files
-│   └── sounds/             # Sound effects
 │
 └── bin/
     └── create-app.js       # CLI tool
@@ -174,14 +165,9 @@ cp .env.example .env
 ```
 
 ```env
-# Enable/disable features
-NEXT_PUBLIC_ENABLE_3D=true
-NEXT_PUBLIC_ENABLE_PARTICLES=true
-NEXT_PUBLIC_ENABLE_SCANLINES=true
-
-# Performance settings
-NEXT_PUBLIC_PARTICLE_COUNT=500
-NEXT_PUBLIC_3D_QUALITY="high"
+# Site Information
+NEXT_PUBLIC_SITE_NAME="Neon Flux"
+NEXT_PUBLIC_SITE_URL="https://your-site.vercel.app"
 ```
 
 ### Typography
@@ -394,11 +380,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **Next.js** - The React Framework
-- **Three.js** - 3D Graphics Library
 - **GSAP** - Animation Platform
 - **Tailwind CSS** - Utility-first CSS
 - **Framer Motion** - Animation Library
-- **tsParticles** - Particle Effects
 
 ---
 
