@@ -45,8 +45,8 @@ const config: Config = {
         "glitch-2": "glitch-2 0.3s infinite",
         "pulse-neon": "pulse-neon 2s ease-in-out infinite",
         "scan-line": "scan-line 8s linear infinite",
-        "flicker": "flicker 3s linear infinite",
-        "float": "float 6s ease-in-out infinite",
+        flicker: "flicker 3s linear infinite",
+        float: "float 6s ease-in-out infinite",
         "matrix-rain": "matrix-rain 20s linear infinite",
       },
       keyframes: {
@@ -74,7 +74,7 @@ const config: Config = {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(100vh)" },
         },
-        "flicker": {
+        flicker: {
           "0%, 100%": { opacity: "1" },
           "41.99%": { opacity: "1" },
           "42%": { opacity: "0" },
@@ -85,7 +85,7 @@ const config: Config = {
           "49%": { opacity: "0" },
           "49.01%": { opacity: "1" },
         },
-        "float": {
+        float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
         },
@@ -96,7 +96,7 @@ const config: Config = {
       },
       backgroundImage: {
         "cyber-gradient": "linear-gradient(45deg, #FF10F0, #00FFF0)",
-        "hologram": "linear-gradient(90deg, #00FFF0, #FF10F0, #FFFF00)",
+        hologram: "linear-gradient(90deg, #00FFF0, #FF10F0, #FFFF00)",
         "grid-cyber":
           "linear-gradient(to right, rgba(0, 255, 240, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 255, 240, 0.1) 1px, transparent 1px)",
       },
