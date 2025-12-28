@@ -51,7 +51,7 @@ export default function Hero() {
           {/* Description */}
           <p className="text-lg md:text-xl text-neon-cyan/80 max-w-2xl mx-auto font-space-mono">
             Showcase your projects with stunning graphics, smooth animations,
-            and cyberpunk aesthetics. Built with Next.js 15 & TypeScript.
+            and cyberpunk aesthetics. Built with Next.js 16 & TypeScript.
           </p>
 
           {/* CTA Buttons */}

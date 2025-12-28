@@ -201,7 +201,7 @@ export default function Home() {
                 combines cutting-edge design with powerful modern technologies.
               </p>
               <p>
-                Built with <span className="text-neon-pink font-semibold">Next.js 15</span>, featuring
+                Built with <span className="text-neon-pink font-semibold">Next.js 16</span>, featuring
                 stunning <span className="text-neon-yellow font-semibold">canvas-based graphics</span>, smooth
                 animations, and a complete design system that&apos;s ready to showcase your projects.
               </p>
@@ -262,7 +262,7 @@ export default function Home() {
             {/* Footer Info */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-neon-cyan font-space-mono text-sm">
-                &copy; {new Date().getFullYear()} Neon Flux Template. Built with Next.js 15
+                &copy; {new Date().getFullYear()} Neon Flux Template. Built with Next.js 16
               </p>
               <div className="flex gap-6 text-sm text-neon-cyan/60">
                 <a href="#" className="hover:text-neon-pink transition-colors cursor-pointer focus:outline-none focus:text-neon-pink">
