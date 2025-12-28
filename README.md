@@ -6,7 +6,8 @@
 
 **A stunning cyberpunk-themed Next.js template with 3D graphics, neon effects, and interactive animations**
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![npm](https://img.shields.io/npm/v/create-neon-flux?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/create-neon-flux)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![GSAP](https://img.shields.io/badge/GSAP-3.12-88CE02?style=for-the-badge&logo=greensock)](https://greensock.com/gsap/)
 [![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
@@ -67,14 +68,6 @@
 
 ```bash
 npx create-neon-flux my-cyberpunk-app
-cd my-cyberpunk-app
-npm run dev
-```
-
-#### Using npm init
-
-```bash
-npm init @neon-flux/template my-cyberpunk-app
 cd my-cyberpunk-app
 npm run dev
 ```
