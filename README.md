@@ -1,8 +1,8 @@
-# 🎮 Neon Flux - Cyberpunk Next.js Template
+# Neon Flux - Cyberpunk Next.js Template
 
 <div align="center">
 
-![Neon Flux Banner](https://via.placeholder.com/1200x400/0A0A0A/FF10F0?text=NEON+FLUX)
+![Neon Flux Banner](./assets/banner.svg)
 
 **A stunning cyberpunk-themed Next.js template with 3D graphics, neon effects, and interactive animations**
 
@@ -17,36 +17,35 @@
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎨 Design System
+### Design System
 - **Cyberpunk Aesthetic** - Neon colors, glitch effects, and futuristic UI
 - **Custom Neon Utilities** - Pre-configured Tailwind CSS classes
 - **Glassmorphism** - Modern glass effects with backdrop blur
 - **Typography** - Orbitron, Space Mono, Rajdhani fonts
 
-### 🎭 Animations
+### Animations
 - **Canvas 3D Effects** - Custom canvas-based cyberpunk city
 - **GSAP Support** - Advanced scroll-triggered animations
 - **Framer Motion** - Smooth micro-interactions
 - **Particle Effects** - Interactive background particles
 
-### 🎬 Effects Library
+### Effects Library
 - **Glitch Text** - Dynamic text distortion effects
 - **RGB Split** - Chromatic aberration animations
 - **Scan Lines** - Retro CRT monitor effect
 - **Neon Glow** - Pulsing neon borders and shadows
-- **Matrix Rain** - Falling code effect
-- **Data Streams** - Binary data flow animations
+- **Particles** - Interactive particle system with connections
 
-### 🧩 Components
+### Components
 - **Hero Section** - Eye-catching landing with 3D background
 - **Navigation** - Glassmorphic navbar with smooth transitions
 - **Buttons** - Neon-styled interactive buttons
 - **Cards** - Holographic card components
 - **Grid Background** - Animated cyber grid
 
-### 🎯 Performance
+### Performance
 - **Optimized Rendering** - Efficient canvas-based effects
 - **Code Splitting** - Dynamic imports for better loading
 - **Responsive** - Mobile-first design
@@ -55,7 +54,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -89,11 +88,11 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your app! 🎉
+Open [http://localhost:3000](http://localhost:3000) to see your app! 
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 neon-flux-template/
@@ -134,7 +133,7 @@ neon-flux-template/
 
 ---
 
-## 🎨 Customization
+## Customization
 
 ### Colors
 
@@ -186,7 +185,7 @@ const spaceMono = Space_Mono({
 
 ---
 
-## 🧩 Component Usage
+## Component Usage
 
 ### GlitchText
 
@@ -240,7 +239,7 @@ const offset = useParallax(0.5);
 
 ---
 
-## 🎯 Scripts
+## Scripts
 
 ```bash
 npm run dev      # Start development server
@@ -251,7 +250,7 @@ npm run lint     # Run ESLint
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 ### Design System
 
@@ -291,7 +290,7 @@ The template includes a comprehensive design system:
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 
@@ -323,7 +322,7 @@ CMD ["npm", "start"]
 
 ---
 
-## 🎮 Advanced Features
+## Advanced Features
 
 ### Audio Reactive (Optional)
 
@@ -359,7 +358,7 @@ useEffect(() => {
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
 
@@ -371,13 +370,13 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Next.js** - The React Framework
 - **GSAP** - Animation Platform
@@ -386,14 +385,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 📞 Support
+## Support
 
-- 🐛 Issues: [GitHub Issues](https://github.com/kpab/neon-flux-template/issues)
+- Issues: [GitHub Issues](https://github.com/kpab/neon-flux-template/issues)
 
 ---
 
 <div align="center">
 
-**Built with ⚡ Neon Flux Template**
+**Built with Neon Flux Template**
 
 </div>
