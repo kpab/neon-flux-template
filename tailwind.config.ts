@@ -48,7 +48,6 @@ const config: Config = {
         "scan-line": "scan-line 8s linear infinite",
         flicker: "flicker 3s linear infinite",
         float: "float 6s ease-in-out infinite",
-        "matrix-rain": "matrix-rain 20s linear infinite",
         shimmer: "shimmer 2s infinite",
       },
       keyframes: {
@@ -90,10 +89,6 @@ const config: Config = {
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
-        },
-        "matrix-rain": {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100%)" },
         },
         shimmer: {
           "0%": { transform: "translateX(-100%)" },

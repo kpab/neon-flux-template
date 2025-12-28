@@ -7,9 +7,19 @@ import Particles from '../effects/Particles';
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
   useEffect(() => {
     setMounted(true);
+
+    // Hide scroll indicator after user scrolls
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollIndicator(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -60,15 +70,17 @@ export default function Hero() {
             </NeonButton>
           </div>
 
-          {/* Scroll Indicator */}
-          <div
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
-            onClick={() => scrollToSection('portfolio')}
-          >
-            <div className="w-6 h-10 border-2 border-neon-cyan rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-neon-cyan rounded-full mt-2 animate-pulse" />
+          {/* Scroll Indicator - hidden after scroll */}
+          {showScrollIndicator && (
+            <div
+              className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer transition-opacity duration-300"
+              onClick={() => scrollToSection('portfolio')}
+            >
+              <div className="w-6 h-10 border-2 border-neon-cyan rounded-full flex justify-center">
+                <div className="w-1 h-3 bg-neon-cyan rounded-full mt-2 animate-pulse" />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

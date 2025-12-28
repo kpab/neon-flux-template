@@ -1,9 +1,24 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function ParticlesBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Intersection Observer to pause when off-screen
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     // Check for reduced motion preference
@@ -17,6 +32,7 @@ export default function ParticlesBackground() {
     if (!ctx) return;
 
     let animationFrame: number;
+    let isRunning = true;
 
     // Set canvas size
     const setCanvasSize = () => {
@@ -135,25 +151,30 @@ export default function ParticlesBackground() {
         }
       });
 
-      animationFrame = requestAnimationFrame(animate);
+      if (isRunning) {
+        animationFrame = requestAnimationFrame(animate);
+      }
     };
 
     animate();
 
     return () => {
+      isRunning = false;
       cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', setCanvasSize);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [isVisible]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 z-0"
-      style={{
-        pointerEvents: 'none',
-      }}
-    />
+    <div ref={containerRef} className="absolute inset-0 z-0">
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full"
+        style={{
+          pointerEvents: 'none',
+        }}
+      />
+    </div>
   );
 }

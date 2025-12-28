@@ -33,8 +33,8 @@ export default function HologramCard({
       viewport={{ once: true }}
       className="group relative glass rounded-lg p-6 cursor-pointer hover:shadow-neon-cyan hover:border-neon-cyan/50 transition-all duration-300"
     >
-      {/* Hologram border effect */}
-      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-neon-pink via-neon-cyan to-neon-yellow opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
+      {/* Hologram border effect - single cyan glow */}
+      <div className="absolute inset-0 rounded-lg bg-neon-cyan/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md" />
 
       <div className="relative z-10">
         {/* Image */}
